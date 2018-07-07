@@ -15,4 +15,15 @@ public class Guard : FSM<GuardState>, IMessageReceiver
     {
         msg.Dispatch(CurrentState);
     }
+
+    public override bool ChangeState(GuardState nextState)
+    {
+        if(base.ChangeState(nextState))
+        {
+            nextState.Guard = this;
+            return true;
+        }
+        return false;
+
+    }
 }

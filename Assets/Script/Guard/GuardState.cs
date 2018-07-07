@@ -7,6 +7,7 @@ using UnityEngine;
 
 public abstract class GuardState : State
 {
+    public Guard Guard;
     public GuardState(GameObject obj) : base(obj)
     {
     }

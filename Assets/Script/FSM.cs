@@ -23,17 +23,19 @@ public class FSM<T> : MonoBehaviour where T: State {
         CurrentState.OnUpdate();
 	}
 
-    public void ChangeState(T nextState)
+    public virtual bool ChangeState(T nextState)
     {
         if (CurrentState != null && !CurrentState.OnExit(nextState))
-            return;
+            return false;
         if (nextState.OnEnter(CurrentState))
         {
             currentState = nextState;
+            return true;
         }
+        return false;
     }
 
-    public void ForceChangeState(T state)
+    public virtual void ForceChangeState(T state)
     {
         CurrentState?.OnExit(state);
         state.OnEnter(CurrentState);
