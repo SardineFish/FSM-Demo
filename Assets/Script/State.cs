@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public abstract class State
+public abstract class State: IMessageReceiver
 {
     public GameObject gameObject;
     public virtual bool OnEnter(State previousState) => true;

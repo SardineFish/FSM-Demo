@@ -17,4 +17,8 @@ public class GuardIdle : GuardState
         return true;
     }
 
+    public void OnMessage(CautiousMessage msg)
+    {
+        gameObject.GetComponent<Guard>().ChangeState(new GuardCautious(gameObject, msg.Position));
+    }
 }

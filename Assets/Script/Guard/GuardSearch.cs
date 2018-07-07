@@ -7,8 +7,13 @@ using UnityEngine;
 
 public class GuardSearch : GuardState
 {
+    public Vector3 Position;
     public GuardSearch(GameObject obj) : base(obj)
     {
+    }
+    public GuardSearch(GameObject obj, Vector3 position) : this(obj)
+    {
+        Position = position;
     }
 
     public override bool OnEnter(State previousState)
