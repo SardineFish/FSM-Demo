@@ -33,4 +33,10 @@ public class GuardCautious : GuardState
             gameObject.GetComponent<Guard>().ChangeState(new GuardSearch(gameObject, Position));
         }
     }
+
+
+    public void OnMessage(CautiousMessage msg)
+    {
+        Guard.ChangeState(new GuardSearch(gameObject, msg.Position));
+    }
 }

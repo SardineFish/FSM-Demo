@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class GuardIdleGun : GuardState
 {
+    float enterTime = 0;
+    public const float WaitTime = 5;
     public GuardIdleGun(GameObject obj) : base(obj)
     {
     }
@@ -14,6 +16,20 @@ public class GuardIdleGun : GuardState
     public override bool OnEnter(State previousState)
     {
         gameObject.GetComponent<Animator>().SetTrigger("IdleGun");
+        enterTime = Time.time;
         return base.OnEnter(previousState);
+
+    }
+
+    public override void OnUpdate()
+    {
+        if (Time.time - enterTime > WaitTime)
+            Guard.ChangeState(new GuardIdle(gameObject));
+    }
+
+
+    public void OnMessage(CautiousMessage msg)
+    {
+        Guard.ChangeState(new GuardSearch(gameObject, msg.Position));
     }
 }

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class Guard : FSM<GuardState>, IMessageReceiver
 {
+    public float VisualHeight = 1.8f;
     void Start()
     {
         ChangeState(new GuardIdle(gameObject));
@@ -25,5 +27,31 @@ public class Guard : FSM<GuardState>, IMessageReceiver
         }
         return false;
 
+    }
+
+    public GameObject Visual()
+    {
+        foreach (var obj in GameObject.FindGameObjectsWithTag("People"))
+        {
+            var ray = new Ray(transform.position + transform.up * VisualHeight, obj.transform.position - transform.position);
+            RaycastHit hit;
+            if(Physics.Raycast(ray,out hit, 500))
+            {
+                if(hit.collider.gameObject == obj)
+                {
+                    return obj;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void Fire()
+    {
+        if (CurrentState is GuardAttack)
+        {
+            var attack = CurrentState as GuardAttack;
+            new AttackMessage(20).Dispatch(attack.AttackTarget.GetComponent<People>());
+        }
     }
 }
