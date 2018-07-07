@@ -51,7 +51,7 @@ public class Guard : FSM<GuardState>, IMessageReceiver
         if (CurrentState is GuardAttack)
         {
             var attack = CurrentState as GuardAttack;
-            new AttackMessage(20).Dispatch(attack.AttackTarget.GetComponent<People>());
+            new AttackMessage(gameObject,10).Dispatch(attack.AttackTarget.GetComponent<People>());
         }
     }
 }

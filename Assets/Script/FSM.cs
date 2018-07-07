@@ -18,7 +18,7 @@ public class FSM<T> : MonoBehaviour where T: State {
     public string StateName;
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
         StateName = CurrentState.GetType().Name;
         CurrentState.OnUpdate();
 	}
@@ -27,6 +27,9 @@ public class FSM<T> : MonoBehaviour where T: State {
     {
         if (CurrentState != null && !CurrentState.OnExit(nextState))
             return false;
+        if(currentState !=null)
+            if (nextState.GetType() == currentState.GetType())
+                return false;
         if (nextState.OnEnter(CurrentState))
         {
             currentState = nextState;
@@ -37,6 +40,9 @@ public class FSM<T> : MonoBehaviour where T: State {
 
     public virtual void ForceChangeState(T state)
     {
+        if (currentState != null)
+            if (state.GetType() == currentState.GetType())
+                return;
         CurrentState?.OnExit(state);
         state.OnEnter(CurrentState);
         currentState = state;
