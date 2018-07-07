@@ -50,6 +50,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4763286753409370}
   - component: {fileID: 95566183665690034}
+  - component: {fileID: 114237597117957302}
+  - component: {fileID: 195360450520159036}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Guard
@@ -2063,6 +2065,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114237597117957302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010637508136394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5212570d75c8dd846b05b070b8048526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateName: 
 --- !u!137 &137285774971003278
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2261,3 +2275,24 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.07545723, y: -0.08350441, z: 0.04416933}
     m_Extent: {x: 0.38389236, y: 0.89498544, z: 0.21355334}
   m_DirtyAABB: 0
+--- !u!195 &195360450520159036
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010637508136394}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
