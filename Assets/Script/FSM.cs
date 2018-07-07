@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FSM : MonoBehaviour {
+public class FSM<T> : MonoBehaviour where T: State {
 
-    State currentState;
-    public State CurrentState
+    T currentState;
+    public T CurrentState
     {
         get { return currentState; }
         set { ChangeState(value); }
@@ -14,24 +14,26 @@ public class FSM : MonoBehaviour {
 	void Start () {
 		
 	}
+
+    public string StateName;
 	
 	// Update is called once per frame
 	void Update () {
+        StateName = CurrentState.GetType().Name;
         CurrentState.OnUpdate();
 	}
 
-    public void ChangeState(State nextState)
+    public void ChangeState(T nextState)
     {
-        if (CurrentState != null && CurrentState.OnExit(nextState))
+        if (CurrentState != null && !CurrentState.OnExit(nextState))
+            return;
+        if (nextState.OnEnter(CurrentState))
         {
-            if (nextState.OnEnter(CurrentState))
-            {
-                currentState = nextState;
-            }
+            currentState = nextState;
         }
     }
 
-    public void ForceChangeState(State state)
+    public void ForceChangeState(T state)
     {
         CurrentState?.OnExit(state);
         state.OnEnter(CurrentState);
