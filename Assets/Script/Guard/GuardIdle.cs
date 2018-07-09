@@ -21,4 +21,12 @@ public class GuardIdle : GuardState
     {
         gameObject.GetComponent<Guard>().ChangeState(new GuardCautious(gameObject, msg.Position));
     }
+
+    public override void OnUpdate()
+    {
+        if (Guard.Visual() && Guard.Visual().GetComponent<People>().HP > 0)
+        {
+            Guard.ChangeState(new GuardAttack(gameObject, Guard.Visual()));
+        }
+    }
 }

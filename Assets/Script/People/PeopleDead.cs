@@ -29,7 +29,7 @@ public class PeopleDead:PeopleState
         if(People.HP>0)
         {
             People.GetComponent<Animator>().SetTrigger("Live");
-            People.ChangeState(new PeopleIdle(gameObject));
+            People.ForceChangeState(new PeopleIdle(gameObject));
         }
     }
 }

@@ -32,6 +32,11 @@ public class GuardCautious : GuardState
         {
             gameObject.GetComponent<Guard>().ChangeState(new GuardSearch(gameObject, Position));
         }
+
+        if (Guard.Visual() && Guard.Visual().GetComponent<People>().HP > 0)
+        {
+            Guard.ChangeState(new GuardAttack(gameObject, Guard.Visual()));
+        }
     }
 
 

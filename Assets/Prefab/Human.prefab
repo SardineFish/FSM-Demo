@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 95302343788560588}
   - component: {fileID: 136874257562857072}
   - component: {fileID: 195907726229029792}
+  - component: {fileID: 114094945074280634}
   m_Layer: 0
   m_Name: Human
   m_TagString: People
@@ -1917,7 +1918,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614881692698612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.88, y: 0, z: 0.16}
+  m_LocalPosition: {x: 6.710621, y: -1.7995288e-17, z: 1.0106003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4510083099739328}
@@ -2065,6 +2066,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114094945074280634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1614881692698612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a50937e4f6331b40bc32508b7c7adf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateName: 
+  HP: 100
+  VisualHeight: 1.8
 --- !u!136 &136874257562857072
 CapsuleCollider:
   m_ObjectHideFlags: 1

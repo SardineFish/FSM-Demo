@@ -37,7 +37,7 @@ public class Guard : FSM<GuardState>, IMessageReceiver
             RaycastHit hit;
             if(Physics.Raycast(ray,out hit, 500))
             {
-                if(hit.collider.gameObject == obj)
+                if (hit.collider.gameObject == obj && obj.GetComponent<People>().HP > 0)
                 {
                     return obj;
                 }

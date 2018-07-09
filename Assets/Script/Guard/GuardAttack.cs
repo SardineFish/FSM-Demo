@@ -23,14 +23,14 @@ public class GuardAttack : GuardState
 
     public override void OnUpdate()
     {
-        if(!Guard.Visual())
-        {
-            Guard.ChangeState(new GuardSearch(gameObject, AttackTarget.transform.position));
-            return;
-        }
-        if(AttackTarget.GetComponent<People>().CurrentState is PeopleDead)
+        if (AttackTarget.GetComponent<People>().HP <= 0)
         {
             Guard.ChangeState(new GuardIdleGun(gameObject));
+            return;
+        }
+        if (!Guard.Visual())
+        {
+            Guard.ChangeState(new GuardSearch(gameObject, AttackTarget.transform.position));
             return;
         }
         gameObject.GetComponent<NavMeshAgent>().isStopped = true;

@@ -22,7 +22,7 @@ public class People : FSM<PeopleState>, IMessageReceiver
     }
     public override void Update()
     {
-        if (HP < 0)
+        if (HP <= 0)
             ForceChangeState(new PeopleDead(gameObject));
         if (Visual())
         {

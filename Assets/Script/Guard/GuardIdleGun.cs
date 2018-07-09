@@ -27,6 +27,11 @@ public class GuardIdleGun : GuardState
     {
         if (Time.time - enterTime > WaitTime)
             Guard.ChangeState(new GuardIdle(gameObject));
+
+        if (Guard.Visual() && Guard.Visual().GetComponent<People>().HP > 0)
+        {
+            Guard.ChangeState(new GuardAttack(gameObject, Guard.Visual()));
+        }
     }
 
 
