@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GuardIdleGun : GuardState
 {
@@ -15,6 +16,7 @@ public class GuardIdleGun : GuardState
 
     public override bool OnEnter(State previousState)
     {
+        gameObject.GetComponent<NavMeshAgent>().isStopped = true;
         gameObject.GetComponent<Animator>().SetTrigger("IdleGun");
         enterTime = Time.time;
         return base.OnEnter(previousState);

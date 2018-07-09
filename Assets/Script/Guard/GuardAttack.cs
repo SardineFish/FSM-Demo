@@ -23,6 +23,16 @@ public class GuardAttack : GuardState
 
     public override void OnUpdate()
     {
+        if(!Guard.Visual())
+        {
+            Guard.ChangeState(new GuardSearch(gameObject, AttackTarget.transform.position));
+            return;
+        }
+        if(AttackTarget.GetComponent<People>().CurrentState is PeopleDead)
+        {
+            Guard.ChangeState(new GuardIdleGun(gameObject));
+            return;
+        }
         gameObject.GetComponent<NavMeshAgent>().isStopped = true;
         var dir = (AttackTarget.transform.position - gameObject.transform.position);
         dir.y = 0;

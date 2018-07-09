@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Guard : FSM<GuardState>, IMessageReceiver
 {
-    public float VisualHeight = 1.8f;
+    public float VisualHeight = 1f;
     void Start()
     {
         ChangeState(new GuardIdle(gameObject));
@@ -52,6 +52,7 @@ public class Guard : FSM<GuardState>, IMessageReceiver
         {
             var attack = CurrentState as GuardAttack;
             new AttackMessage(gameObject,10).Dispatch(attack.AttackTarget.GetComponent<People>());
+            GetComponent<Weapon>().TakeFire(attack.AttackTarget.transform.position + Vector3.up);
         }
     }
 }

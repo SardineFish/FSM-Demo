@@ -20,6 +20,7 @@ public class GuardSearch : GuardState
 
     public override bool OnEnter(State previousState)
     {
+        gameObject.GetComponent<NavMeshAgent>().isStopped = false;
         gameObject.GetComponent<Animator>().SetTrigger("Search");
         return base.OnEnter(previousState);
     }
@@ -31,7 +32,7 @@ public class GuardSearch : GuardState
         {
             Guard.ChangeState(new GuardIdleGun(gameObject));
         }
-        if (Guard.Visual())
+        if (Guard.Visual() && Guard.Visual().GetComponent<People>().HP>0)
         {
             Guard.ChangeState(new GuardAttack(gameObject, Guard.Visual()));
         }
